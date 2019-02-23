@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+use SlimFacades\App as SlimApp;
+use Symfony\Component\Console\Application;
+
+require_once __DIR__ . '/private/bootstrap.php';
+require_once __DIR__ . '/private/routes.php';
+
+// Define the console application
+$application = new Application();
+
+// Example on how to add a command to the console application
+// $application->add(new \Mossengine\Commands\Command());
+
+// Run the console application
+$application->run();

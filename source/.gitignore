@@ -1,0 +1,7 @@
+vendor/
+config/
+storage/
+/.env
+.env
+.idea/
+.DS_Store

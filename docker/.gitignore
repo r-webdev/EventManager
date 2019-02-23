@@ -1,0 +1,10 @@
+vendor/
+config/
+cache/
+logs/
+/.env
+.env
+.idea/
+phinx.yml
+.DS_Store
+/http
