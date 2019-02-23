@@ -25,18 +25,6 @@
                     </div>
                     <div class="message-body has-text-left">
                         <div class="field">
-                            <label class="label">Account Type</label>
-                            <div class="control">
-                                <div class="select is-fullwidth">
-                                    <select id="inputType">
-                                        <option>Select account type...</option>
-                                        <option value="employee">Employee ( Find Jobs )</option>
-                                        <option value="employer">Employer ( List Jobs )</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
                             <label class="label">Account Email</label>
                             <div class="control">
                                 <input id="inputEmail" class="input" type="text" placeholder="someone@website.domain.over.here">
@@ -79,16 +67,6 @@
         }
         $(document).ready(function() {
             // Bind the input changes
-            $('#inputType').on('change', function() {
-                let inputType = $(this);
-                inputType.removeClass('is-danger').parent().siblings().remove();
-                if (void 0 === inputType || inputType.val().length <= 0 || (inputType.val() !== 'employee' && inputType.val() !== 'employer')) {
-                    inputType.addClass('is-danger').parent().parent().append(
-                        $('<p class="has-text-danger"/>')
-                            .text('Invalid Account Type, must be Employee or Employer')
-                    );
-                }
-            });
             $('#inputEmail').on('keyup', function() {
                 let inputEmail = $(this);
                 inputEmail.removeClass('is-danger').siblings().remove();
@@ -138,10 +116,9 @@
 
             // Bind the submit button to send the ajax request to the api endpoints
             $('#buttonSubmit').on('click', function() {
-                let buttonSubmit, inputType, inputEmail, inputPassword, inputConfirm, inputTermsConditionsPrivacyPolicy;
+                let buttonSubmit, inputEmail, inputPassword, inputConfirm, inputTermsConditionsPrivacyPolicy;
 
                 buttonSubmit = $(this);
-                inputType = $('#inputType');
                 inputEmail = $('#inputEmail');
                 inputPassword = $('#inputPassword');
                 inputConfirm = $('#inputConfirm');
@@ -149,15 +126,13 @@
 
                 // Lock down the inputs
                 buttonSubmit.attr('disabled', 'disabled');
-                inputType.attr('disabled', 'disabled');
                 inputEmail.attr('disabled', 'disabled');
                 inputPassword.attr('disabled', 'disabled');
                 inputConfirm.attr('disabled', 'disabled');
                 inputTermsConditionsPrivacyPolicy.attr('disabled', 'disabled');
 
                 if (
-                    (inputType.val() === 'employee' || inputType.val() === 'employer')
-                    && validateEmail(inputEmail.val())
+                    validateEmail(inputEmail.val())
                     && inputPassword.val().length >= 8
                     && inputPassword.val() === inputConfirm.val()
                     && inputTermsConditionsPrivacyPolicy.is(':checked')
@@ -166,7 +141,6 @@
                         url: '{{ localAddress() }}/api/v1/account',
                         method: 'POST',
                         data: {
-                            type: inputType.val(),
                             email: inputEmail.val(),
                             password: inputPassword.val(),
                             confirm: inputConfirm.val(),
@@ -174,7 +148,6 @@
                         },
                         parent: {
                             buttonSubmit: buttonSubmit,
-                            inputType: inputType,
                             inputEmail: inputEmail,
                             inputPassword: inputPassword,
                             inputConfirm: inputConfirm,
@@ -241,7 +214,6 @@
 
                         // unlock the inputs
                         this.parent.buttonSubmit.removeAttr('disabled');
-                        this.parent.inputType.removeAttr('disabled');
                         this.parent.inputEmail.removeAttr('disabled');
                         this.parent.inputPassword.removeAttr('disabled');
                         this.parent.inputConfirm.removeAttr('disabled');
@@ -249,7 +221,6 @@
                     });
                 } else {
                     // Generate errors by triggering the keychange
-                    inputType.trigger('change');
                     inputEmail.trigger('keyup');
                     inputPassword.trigger('keyup');
                     inputConfirm.trigger('keyup');
@@ -257,7 +228,6 @@
 
                     // Lock down the form
                     buttonSubmit.removeAttr('disabled');
-                    inputType.removeAttr('disabled');
                     inputEmail.removeAttr('disabled');
                     inputPassword.removeAttr('disabled');
                     inputConfirm.removeAttr('disabled');

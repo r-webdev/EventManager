@@ -124,10 +124,6 @@ class AccountComponent extends CoreComponent
         // Check for parameters, no parameters means schema check
         if (empty($arrayParameters)) {
             return Poignant::create()
-                ->withType(function($condition) {
-                    return $condition->required()
-                        ->in(['user']);
-                })
                 ->withEmail(function($condition) {
                     return $condition->required()
                         ->email();
