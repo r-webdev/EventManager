@@ -34,6 +34,9 @@ class CreateTokens extends AbstractMigration
             ->addIndex(['created_at'])
             ->addIndex(['deleted_at'])
 
+            ->addForeignKey('account_uuid', 'accounts', 'uuid')
+            ->addForeignKey('refresh_token_uuid', 'tokens', 'uuid')
+
             ->create();
     }
 
