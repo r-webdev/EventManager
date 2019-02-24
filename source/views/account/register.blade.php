@@ -47,7 +47,7 @@
                             <div class="control">
                                 <label class="checkbox">
                                     <input id="inputTermsConditionsPrivacyPolicy" type="checkbox" value="accepted">
-                                    <span>I accept the <a href="/termsandconditions">terms and conditions</a> as well as the <a href="/privacypolicy">privacy policy</a>.</span>
+                                    <span>I accept the <a href="/documents/terms-of-use">terms of use</a> as well as the <a href="/documents/privacy-policy">privacy policy</a>.</span>
                                 </label>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
 
                 inputTermsConditionsPrivacyPolicy.parent().append(
                     $('<span />')
-                        .html('I accept the <a href="/termsandconditions">terms and conditions</a> as well as the <a href="/privacypolicy">privacy policy</a>.')
+                        .html('I accept the <a href="/documents/terms-of-use">terms of use</a> as well as the <a href="/documents/privacy-policy">privacy policy</a>.')
                 );
 
                 if (void 0 === inputTermsConditionsPrivacyPolicy || !inputTermsConditionsPrivacyPolicy.is(':checked')) {

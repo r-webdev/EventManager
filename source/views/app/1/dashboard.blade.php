@@ -14,7 +14,7 @@
         </div>
         <div class="columns">
             <div class="column is-full has-text-center">
-                <a class="button is-large is-info is-loading"></a>
+                <a class="button is-large is-white is-loading"></a>
                 <h5 class="subtitle is-5">loading</h5>
             </div>
         </div>

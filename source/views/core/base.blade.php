@@ -52,9 +52,14 @@
     @section('sectionHeaderSuffix')
     @show
 </head>
+<style>
+    .message-body {
+        border-width: 1px !important;
+    }
+</style>
 <body>
 
-<section class="hero is-fullheight is-light">
+<section class="hero is-fullheight is-white">
     <div class="hero-head">
         @section('sectionBodyPrefix')
         @show

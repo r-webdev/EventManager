@@ -7,6 +7,13 @@ use SlimFacades\Route as SlimRoute;
 SlimRoute::get('', '\Mossengine\Web\v1\Controllers\DefaultController:getDefault')->add(new \Mossengine\Core\v1\Middleware\CoreMiddleware(SlimApp::self()));
 SlimRoute::get('/', '\Mossengine\Web\v1\Controllers\DefaultController:getDefault')->add(new \Mossengine\Core\v1\Middleware\CoreMiddleware(SlimApp::self()));
 
+// New documents for new ToU, CG and PP
+SlimRoute::group('/documents', function () {
+    $this->get('/terms-of-use', '\Mossengine\Web\v1\Controllers\DocumentController:getTermsOfUse');
+    $this->get('/community-guidelines', '\Mossengine\Web\v1\Controllers\DocumentController:getCommunityGuidelines');
+    $this->get('/privacy-policy', '\Mossengine\Web\v1\Controllers\DocumentController:getPrivacyPolicy');
+})->add(new \Mossengine\Core\v1\Middleware\CoreMiddleware(SlimApp::self()));
+
 // Support pages
 SlimRoute::get('/account/register', '\Mossengine\Web\v1\Controllers\AccountController:getRegister')->add(new \Mossengine\Core\v1\Middleware\CoreMiddleware(SlimApp::self()));
 SlimRoute::get('/account/confirm[/{email}]', '\Mossengine\Web\v1\Controllers\AccountController:getConfirm')->add(new \Mossengine\Core\v1\Middleware\CoreMiddleware(SlimApp::self()));
